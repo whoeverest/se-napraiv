@@ -41,10 +41,11 @@
         }
 
         $(function() {
-            q = getURLParameter('q');
+            console.log(getURLParameter('q'));
+            q = getURLParameter('q') || 'зелка';
             $('#text2').append(' ' + q);
             googleImages(q, function(urls) {
-                if (urls) {
+                if (urls.length > 0) {
                     $('#panel2')
                         .css('background', 'url("' + urls[0] + '")')
                         .css('background-repeat', 'no-repeat')
@@ -97,5 +98,8 @@
         <div id="text1">Како си пројде вчера бе?</div>
         <div id="text2">Остај, се напраив</div>
     </div>
+    <form action="index.html" method="GET" style="clear: both; padding-top: 20px; display: block;">
+        Се напраив <input type="text" name="q">
+    </form>
 </body>
 </html>
