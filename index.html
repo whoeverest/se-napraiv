@@ -42,16 +42,60 @@
 
         $(function() {
             q = getURLParameter('q');
+            $('#text2').append(' ' + q);
             googleImages(q, function(urls) {
                 if (urls) {
-                    $('#image').append('<img src="' + urls[0] + '">');
+                    $('#panel2')
+                        .css('background', 'url("' + urls[0] + '")')
+                        .css('background-repeat', 'no-repeat')
+                        .css('background-position', '50% 50%');
                 }
             })
-
         })
     </script>
+    <style type="text/css">
+        body {
+            font-family: arial;
+        }
+        #strip {
+            position: relative;
+        }
+        #panel1 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            float: left;
+            background: url('panel1.png');
+        }
+        #panel2 {
+            width: 300px;
+            height: 300px;
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            float: left;
+        }
+        #text1 {
+            position: absolute;
+            top: 23px;
+            left: 95px;
+            width: 123px;
+        }
+        #text2 {
+            text-align: right;
+            position: absolute;
+            top: 98px;
+            left: 75px;
+            width: 119px;
+        }
+    </style>
 </head>
 <body>
-    <div id="image"></div>
+    <div id="strip">
+        <div id="panel1"></div>
+        <div id="panel2"></div>
+        <div id="text1">Како си пројде вчера бе?</div>
+        <div id="text2">Остај, се напраив</div>
+    </div>
 </body>
 </html>
