@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Се напраив...</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+        }
+
+        var googleImages = function(keyword, cb) {
+            
+            if (typeof keyword === undefined) {
+                throw "Keyword is required";
+            }
+            
+            var url = "https://www.googleapis.com/customsearch/v1";
+            var params = {
+                "key": "AIzaSyATr73LZOfIW2hJBfjyBq-wkyBK53FfoKE",
+                "cx": "004607723123020182041:o8kf7hqh_aa",
+                "q": keyword
+            }
+
+            var filterImages = function(obj) {
+                var urls = []; 
+                $.each(obj.items, function(i, el) {
+                    try {
+                        urls.push(el.pagemap.cse_image[0].src);
+                    } catch (err) {
+                        console.log("Attribute not found: " + err);
+                    }
+                })
+                return urls;
+            }
+            
+            $.getJSON(url, params, function(data) {
+                cb(filterImages(data));
+            })
+        }
+
+        $(function() {
+            q = getURLParameter('q');
+            googleImages(q, function(urls) {
+                if (urls) {
+                    $('#image').append('<img src="' + urls[0] + '">');
+                }
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div id="image"></div>
+</body>
+</html>
