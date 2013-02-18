@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Се напраив...</title>
+    <title>Се напраив</title>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript">
 
@@ -43,6 +43,7 @@
         $(function() {
             console.log(getURLParameter('q'));
             q = getURLParameter('q') || 'зелка';
+            document.title = document.title + ': ' + q;
             $('#text2').append(' ' + q);
             googleImages(q, function(urls) {
                 if (urls.length > 0) {
