@@ -60,7 +60,7 @@
             }
 
             document.title = document.title + ': ' + q;
-            $('#text2').append(' ' + q);
+            $('#text2').text($('#text2').text() + ' ' + q);
             googleImages(q, function(urls) {
                 if (urls.length > 0) {
                     $('#panel2')
