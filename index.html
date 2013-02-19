@@ -60,7 +60,6 @@
             }
 
             document.title = document.title + ': ' + q;
-            q = $('q').text(); console.log(q);
             $('#text2').append(' ' + q);
             googleImages(q, function(urls) {
                 if (urls.length > 0) {
