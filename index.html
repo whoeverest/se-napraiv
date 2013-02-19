@@ -41,9 +41,27 @@
         }
 
         $(function() {
-            console.log(getURLParameter('q'));
-            q = getURLParameter('q') || 'зелка';
+            q = getURLParameter('q') || 'ѓубре';
+            q = $('<div/>').append(q).text();
+
+            // Tribute to Boro Sitnikovski who found the
+            // XSS and embedded Nyan cat animation and music. :))))
+            if (q == 'wudnica' || q == 'nyan cat' || q == 'nyan') {
+                $('body').append('\
+                    <object width="425" height="350">\
+                        <param name="movie" value="http://www.youtube.com/v/QH2-TGUlwu4&autoplay=1"></param>\
+                        <embed src="http://www.youtube.com/v/QH2-TGUlwu4&autoplay=1" type="application/x-shockwave-flash" width="0" height="0">\
+                        </embed>\
+                    </object>'
+                );
+                setInterval(function() {
+                    $('#panel2').css('background-color', '#' + parseInt(Math.random() * 1000000));
+                }, 30)
+                return;
+            }
+
             document.title = document.title + ': ' + q;
+            q = $('q').text(); console.log(q);
             $('#text2').append(' ' + q);
             googleImages(q, function(urls) {
                 if (urls.length > 0) {
